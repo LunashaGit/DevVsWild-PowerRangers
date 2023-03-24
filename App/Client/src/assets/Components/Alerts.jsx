@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import AlertButton from "./AlertButton";
+import AlertsList from "./AlertsList";
 function Alerts() {
   const [showAlert, setShowAlert] = useState(false);
   const toggleAlert = useCallback(
@@ -9,6 +10,7 @@ function Alerts() {
   return (
     <>
       <AlertButton onClick={toggleAlert} />
+      {showAlert && <AlertsList />}
     </>
   );
 }
