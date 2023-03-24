@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./assets/Pages/Homepage";
+import Error404 from "./assets/Pages/Error404";
 import "./App.css";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 }
