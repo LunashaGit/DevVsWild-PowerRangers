@@ -12,7 +12,7 @@ const connectDB = async () => {
   try {
     await mongoose
       .connect(
-        `mongodb+srv://${USER}:${PASSWORD}@power-rangers.9psnhuv.mongodb.net/test`
+        `mongodb+srv://${USER}:${PASSWORD}@power-rangers.9psnhuv.mongodb.net/`
       )
       .then(() => console.log("DB Connected!"));
   } catch (error) {
