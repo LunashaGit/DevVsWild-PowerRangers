@@ -11,6 +11,14 @@ const alertSchema = new Schema({
     content: {
         type: String,
         required: true
+    },
+    lon: {
+        type: Number,
+        required: true,
+    },
+    lat: {
+        type: Number,
+        required: true
     }
 }, { timestamps: true })
 

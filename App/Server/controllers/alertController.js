@@ -3,12 +3,14 @@ const Alert = require('../models/alertModel');
 
 // create an alert
 const createAlert = async (req, res) => {
-    const {title, content} = req.body;
+    const {title, content, lon, lat} = req.body;
 
     try {
         const alert = await Alert.create({
             title,
-            content
+            content,
+            lon,
+            lat
         });
 
         res.status(200).json(alert);
