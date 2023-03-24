@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 
 dotenv.config({
   path: ".env",
@@ -11,9 +11,13 @@ const PASSWORD = process.env.MONGO_PASSWORD;
 const connectDB = async () => {
   try {
     await mongoose
-      .connect(`mongodb+srv://${USER}:${PASSWORD}`)
+      .connect(
+        `mongodb+srv://${USER}:${PASSWORD}@power-rangers.9psnhuv.mongodb.net/test`
+      )
       .then(() => console.log("DB Connected!"));
   } catch (error) {
     console.log(error);
   }
 };
+
+module.exports = { connectDB };
