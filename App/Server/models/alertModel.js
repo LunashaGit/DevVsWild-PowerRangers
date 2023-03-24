@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const signalSchema = new Schema({
+const alertSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -20,6 +20,6 @@ const signalSchema = new Schema({
         type: Number,
         required: true
     }
-}, { timestamps: true });
+}, { timestamps: true })
 
-module.exports = mongoose.model('Signal', signalSchema);
+module.exports = mongoose.model('Alert', alertSchema);

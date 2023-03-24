@@ -3,11 +3,13 @@ const Signal = require('../models/signalModel');
 
 // create a signal
 const createSignal = async (req, res) => {
-    const { title } = req.body;
+    const { title, lon, lat } = req.body;
 
     try {
         const signal = await Signal.create({
-            title
+            title,
+            lon,
+            lat
         });
 
         res.status(200).json(signal);
