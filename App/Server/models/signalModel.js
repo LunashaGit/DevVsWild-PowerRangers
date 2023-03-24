@@ -8,10 +8,6 @@ const signalSchema = new Schema({
         required: true,
         unique: true
     },
-    content: {
-        type: String,
-        required: true
-    },
     lon: {
         type: Number,
         required: true,
