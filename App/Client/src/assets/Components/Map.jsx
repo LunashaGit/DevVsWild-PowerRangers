@@ -1,15 +1,9 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-
+import RoutingMachine from "./RoutingMachine";
 function Map() {
   const latitude = 50.6327565;
   const longitude = 5.5686243;
-
-  function MapView() {
-    let map = useMap();
-    map.setView([latitude, longitude], map.getZoom());
-    return null;
-  }
   return (
     <MapContainer
       center={[latitude, longitude]}
@@ -21,7 +15,7 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <MapView />
+      <RoutingMachine />
     </MapContainer>
   );
 }

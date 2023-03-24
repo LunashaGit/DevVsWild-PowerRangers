@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "leaflet-routing-machine": "^3.2.12",
+    "lrm-google": "^1.0.1"
+  }
+}
