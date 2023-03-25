@@ -4,7 +4,7 @@ import Homepage from '../Pages/Homepage'
 const Loading = () => {
     return (
         <>
-            <div className="h-screen bg-black flex flex-col justify-center gap-20">
+            <div className="h-screen bg-black flex flex-col justify-center gap-20 z-[6000]">
                 <img
                     src="../src/assets/images/logo-white.svg"
                     className="h-[160px] w-auto"
@@ -17,7 +17,7 @@ const Loading = () => {
                     <p className="text-white">Loading</p>
                     <svg
                         aria-hidden="true"
-                        class="inline w-8 h-8 mr-2 text-orange-500 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-orange-300"
+                        className="inline w-8 h-8 mr-2 text-orange-500 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-orange-300"
                         viewBox="0 0 100 101"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,6 @@ const Loading = () => {
                     </svg>
                 </div>
             </div>
-            )}
         </>
     )
 }

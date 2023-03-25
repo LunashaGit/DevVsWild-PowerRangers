@@ -30,6 +30,8 @@ export default function RoutingMachine(props) {
     map.setView([props.startCoords.lat, props.startCoords.lon], 20);
 
     document.getElementsByClassName("leaflet-right")[0].style.display = "none";
+    document.getElementsByClassName("leaflet-control-zoom")[0].style.display = "none";
+    document.getElementsByClassName("leaflet-control-attribution")[0].style.display = "none";
 
     return () => map.removeControl(routingControl);
   }, [map, props.endCoords]);
