@@ -1,24 +1,37 @@
 import SignalCancel from "./SignalsCancel";
-
+import axios from "axios";
 function SignalList(props) {
+  console.log(props.startCoords);
   const Signals = [
     {
       id: 1,
-      title: "Alert 1",
+      title: "AlertOne",
       description: "This is the first alert",
     },
     {
       id: 2,
-      title: "Alert 2",
+      title: "AlertTwo",
       description: "This is the second alert",
     },
     {
       id: 3,
-      title: "Alert 3",
+      title: "AlertThree",
       description: "This is the third alert",
     },
   ];
 
+  const SignalAPI = async (e) => {
+    console.log(e);
+    const response = await axios
+      .post("http://127.0.0.1:8080/api/signals", {
+        type: e.title,
+        lon: props.startCoords.lon,
+        lat: props.startCoords.lat,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
   return (
     <div
       style={{
@@ -33,6 +46,7 @@ function SignalList(props) {
           <li
             className="list-group-item w-16 h-16 text-center text-white bg-black rounded-full"
             key={Signal.id}
+            onClick={() => SignalAPI(Signal)}
           >
             <h3>{Signal.title}</h3>
           </li>

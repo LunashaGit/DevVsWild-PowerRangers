@@ -59,6 +59,13 @@ export default function Homepage() {
     setShowSearchBar(false);
   }, []);
 
+  const handleCoords = useCallback((e) => {
+    setStartCoords({
+      lat: e.lat,
+      lon: e.lon,
+    });
+  }, []);
+
   window.addEventListener("resize", () => {
     if (window.innerWidth > 425) {
       console.log(true);
@@ -82,6 +89,7 @@ export default function Homepage() {
       </div>
     );
   }
+
   return (
     <div className="Homepage relative flex items-center justify-center">
       <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
@@ -91,10 +99,16 @@ export default function Homepage() {
         )}
       </div>
       <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
-        <Alerts onClick={handlePopup} />
-        <Signals onClick={handlePopup} />
+        <Alerts onClick={handlePopup} startCoords={startCoords} />
+        <Signals onClick={handlePopup} startCoords={startCoords} />
       </div>
-      {startCoords && <Map startCoords={startCoords} endCoords={endCoords} />}
+      {startCoords && (
+        <Map
+          onChange={handleCoords}
+          startCoords={startCoords}
+          endCoords={endCoords}
+        />
+      )}
     </div>
   );
 }

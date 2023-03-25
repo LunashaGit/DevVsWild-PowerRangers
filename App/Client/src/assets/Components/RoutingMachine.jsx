@@ -15,14 +15,29 @@ export default function RoutingMachine(props) {
     if (!map) return;
 
     let routingControl = L.Routing.control({
-          waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon)],
-          routeWhileDragging: true,
-      }).addTo(map);
-
+      waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon)],
+      routeWhileDragging: true,
+      // if the waypoints move, change the startCoords
+      createMarker: function (i, wp, nWps) {
+        const marker = L.marker(wp.latLng, {
+          draggable: true,
+        });
+        marker.on("dragend", function (e) {
+          props.onChange({
+            lat: e.target._latlng.lat,
+            lon: e.target._latlng.lng,
+          });
+        });
+        return marker;
+      },
+    }).addTo(map);
 
     if (props.endCoords) {
       routingControl = L.Routing.control({
-        waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon), L.latLng(props.endCoords.lat, props.endCoords.lon)],
+        waypoints: [
+          L.latLng(props.startCoords.lat, props.startCoords.lon),
+          L.latLng(props.endCoords.lat, props.endCoords.lon),
+        ],
         routeWhileDragging: true,
       }).addTo(map);
     }

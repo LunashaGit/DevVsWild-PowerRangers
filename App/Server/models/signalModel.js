@@ -15,7 +15,6 @@ const signalSchema = new Schema({
     type: Number,
     required: true,
   },
-  // expire
   expireAt: {
     type: Date,
     default: Date.now,

@@ -9,7 +9,9 @@ function Signals(props) {
   return (
     <>
       {!showSignals && <SignalsButton onClick={toggleSignals} />}
-      {showSignals && <SignalsList onClick={toggleSignals} />}
+      {showSignals && (
+        <SignalsList onClick={toggleSignals} startCoords={props.startCoords} />
+      )}
     </>
   );
 }

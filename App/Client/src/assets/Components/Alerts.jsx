@@ -9,7 +9,9 @@ function Alerts(props) {
   return (
     <>
       {!showAlert && <AlertButton onClick={toggleAlert} />}
-      {showAlert && <AlertsList onClick={toggleAlert} />}
+      {showAlert && (
+        <AlertsList onClick={toggleAlert} startCoords={props.startCoords} />
+      )}
     </>
   );
 }
