@@ -5,6 +5,7 @@ import SearchBarForm from "../Components/SearchBarForm";
 import Alerts from "../Components/Alerts";
 import Danger from "../Components/Danger";
 import Map from "../Components/Map";
+import Loading from "../Components/Loading.jsx";
 
 export default function Homepage() {
   const [startPoint, setStartPoint] = useState(null);
