@@ -26,11 +26,12 @@ function Map(props) {
       center={[latitude, longitude]}
       zoom={16}
       scrollWheelZoom={true}
-      style={{ height: "100vh", width: "100%" }}
+      style={{ height: "100vh", width: "100%"}}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        className="dark:grayscale dark:brightness-50"
       />
       <RoutingMachine
         onChange={props.onChange}

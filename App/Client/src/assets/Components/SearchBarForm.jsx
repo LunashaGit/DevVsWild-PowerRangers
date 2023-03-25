@@ -8,14 +8,14 @@ function SearchBarForm(props) {
     }, [props.results]);*/
 
     return (
-        <div className="absolute flex flex-col top-0 left-0 w-full h-full min-h-full bg-white z-[6000]">
+        <div className="absolute flex flex-col top-0 left-0 w-full h-full min-h-full dark:bg-[#1E1E1E] bg-white z-[6000]">
           <form
-            className="flex mx-auto justify-between w-[90%] p-4 mt-[1.25rem] h-fit items-center bg-white shadow-2xl rounded-3xl flex-col gap-4 mb-10"
+            className="flex mx-auto justify-between w-[90%] p-4 mt-[1.25rem] h-fit items-center bg-white dark:bg-[#1E1E1E] shadow-2xl rounded-3xl flex-col gap-4 mb-10"
             onSubmit={props.onSubmit}
           >
               <div className="flex w-full">
                 <input
-                  className="flex items-center rounded-full w-full bg-white outline-0 text-[#E65728]"
+                  className="flex items-center rounded-full w-full bg-white dark:bg-[#1E1E1E] outline-0 text-[#E65728] outline-none"
                   type="text"
                   defaultValue={props.startPoint}
                 />
@@ -27,7 +27,7 @@ function SearchBarForm(props) {
 
               <div className="flex w-full">
                 <input
-                  className="rounded-full w-full bg-white outline-0"
+                  className="rounded-full w-full bg-white dark:bg-[#1E1E1E] outline-0 dark:text-white outline-none"
                   type="text"
                   placeholder="Destination"
                 />
@@ -40,7 +40,7 @@ function SearchBarForm(props) {
                 setEndCoords={props.setEndCoords}
                 setShowSearchBar={props.setShowSearchBar}
             />
-            <div className="flex justify-center absolute bottom-10 w-full">
+            <div className="flex justify-center absolute bottom-20 w-full">
                 <div
                     className="bg-[#E65728] text-white p-2 rounded-full shadow-2xl"
                     onClick={() => props.setShowSearchBar(false)}

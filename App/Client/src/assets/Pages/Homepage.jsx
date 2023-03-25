@@ -82,7 +82,7 @@ export default function Homepage() {
   if (showMobileWarning === true) {
     return (
       <div className="flex flex-col items-center h-[100vh] justify-center gap-4 structure dark:bg-greyNight">
-        <section className="bg-orangeFox dark:bg-dimGray w-96 rounded-lg shadowtext-center p-11">
+        <section className="bg-orangeFox dark:bg-dimGray w-96 rounded-lg shadow text-center p-11">
           <h1 className="text-center text-2xl font-bold text-white">
             Work in progress
           </h1>
@@ -109,7 +109,7 @@ export default function Homepage() {
           setEndCoords={setEndCoords}
         />
       )}
-      <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
+      <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between">
         <Discord onClick={handlePopup} startCoords={startCoords} />
         <Alerts onClick={handlePopup} startCoords={startCoords} />
       </div>
