@@ -1,7 +1,7 @@
 function AlertButton(props) {
   return (
     <button
-      className="rounded-full w-24 h-24 bg-black text-white right-5"
+      className="rounded-full w-24 h-24 bg-black text-white left-5"
       onClick={props.onClick}
     >
       {" "}

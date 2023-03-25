@@ -2,13 +2,12 @@ import { useState, useCallback, useEffect } from "react";
 
 import SearchBarButton from "../Components/SearchBarButton";
 import SearchBarForm from "../Components/SearchBarForm";
+import Alerts from "../Components/Alerts";
+import Danger from "../Components/Danger";
 import Map from "../Components/Map";
 
 export default function Homepage() {
-  const [startCoords, setStartCoords] = useState({
-    lat: 0,
-    lon: 0
-  });
+  const [startCoords, setStartCoords] = useState(null);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [valueForm, setValueForm] = useState([]);
   const toggleSearchBar = useCallback(
@@ -27,25 +26,29 @@ export default function Homepage() {
   }, []);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       setStartCoords({
         lat: position.coords.latitude,
-        lon: position.coords.longitude
+        lon: position.coords.longitude,
       });
     });
   }, []);
 
-  console.log(valueForm);
+  //console.log(valueForm);
+
   return (
-    <div className="Homepage relative">
+    <div className="Homepage relative flex items-center justify-center">
       <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
         {!showSearchBar && <SearchBarButton onClick={toggleSearchBar} />}
-        {showSearchBar && <SearchBarForm onSubmit={handleSubmit} />}
+        {showSearchBar && (
+          <SearchBarForm onSubmit={handleSubmit} startCoords={startCoords} />
+        )}
       </div>
-      <Map
-          startCoords={startCoords}
-          endCoords={null}
-      />
+      <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
+        <Danger />
+        <Alerts />
+      </div>
+      {startCoords && <Map startCoords={startCoords} endCoords={null} />}
     </div>
   );
 }

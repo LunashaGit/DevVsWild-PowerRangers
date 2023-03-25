@@ -1,5 +1,5 @@
-function AlertsList() {
-  const Alerts = [
+function DangerList() {
+  const Dangers = [
     {
       id: 1,
       title: "Alert 1",
@@ -27,12 +27,12 @@ function AlertsList() {
       role="alert"
     >
       <ul className="list-group flex flex-wrap gap-4 justify-center left-1/4 right-1/4 absolute top-[100px]">
-        {Alerts.map((alert) => (
+        {Dangers.map((Danger) => (
           <li
             className="list-group-item w-16 h-16 text-center text-white bg-black rounded-full"
-            key={alert.id}
+            key={Danger.id}
           >
-            <h3>{alert.title}</h3>
+            <h3>{Danger.title}</h3>
           </li>
         ))}
       </ul>
@@ -40,4 +40,4 @@ function AlertsList() {
   );
 }
 
-export default AlertsList;
+export default DangerList;
