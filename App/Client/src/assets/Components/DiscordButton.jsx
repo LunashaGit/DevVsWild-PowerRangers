@@ -1,4 +1,4 @@
-function SignalsButton(props) {
+function DiscordButton(props) {
   return (
     <button
       className="rounded-full w-14 h-14 bg-orangeFox font-bold text-xl shadow-lg"
@@ -12,4 +12,4 @@ function SignalsButton(props) {
   );
 }
 
-export default SignalsButton;
+export default DiscordButton;

@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 import SearchBarButton from "../Components/SearchBarButton";
 import SearchBarForm from "../Components/SearchBarForm";
 import Alerts from "../Components/Alerts";
-import Signals from "../Components/Signals";
+import Discord from "../Components/Discord";
 import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
 
@@ -100,7 +100,7 @@ export default function Homepage() {
       </div>
       <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
         <Alerts onClick={handlePopup} startCoords={startCoords} />
-        <Signals onClick={handlePopup} startCoords={startCoords} />
+        <Discord onClick={handlePopup} startCoords={startCoords} />
       </div>
       {startCoords && (
         <Map
