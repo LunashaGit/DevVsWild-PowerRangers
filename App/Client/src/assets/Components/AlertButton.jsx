@@ -1,11 +1,9 @@
 function AlertButton(props) {
   return (
     <button
-      className="rounded-full w-24 h-24 bg-black text-white right-5"
+      className="rounded-full w-14 h-14 bg-orangeFox"
       onClick={props.onClick}
-    >
-      {" "}
-      Hey
+    ><img src="../src/assets/images/warning.png" className="w-9 ml-2.5 mb-1.5"/>
     </button>
   );
 }
