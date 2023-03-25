@@ -95,11 +95,20 @@ export default function Homepage() {
   }
 
   return (
+<<<<<<< HEAD
       <div className="Homepage relative flex items-center justify-center">
         <div className="absolute top-5 flex justify-center w-full px-8 z-[5000]">
           {!showSearchBar && <SearchBarButton onClick={toggleSearchBar}/>}
         </div>
-        {showSearchBar && <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} startCoords={startCoords} setShowSearchBar={setShowSearchBar} results={results} setEndCoords={setEndCoords} />}
+        {showSearchBar && (
+            <SearchBarForm
+                onSubmit={handleSubmit}
+                startPoint={startPoint}
+                startCoords={startCoords}
+                setShowSearchBar={setShowSearchBar}
+                results={results}
+            />
+        )}
         <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
           <Alerts onClick={handlePopup} startCoords={startCoords} />
           <Discord onClick={handlePopup} startCoords={startCoords} />
