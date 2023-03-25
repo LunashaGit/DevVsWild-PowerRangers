@@ -2,7 +2,8 @@ const express = require('express');
 const {
     createSignal,
     getSignal,
-    getSignals
+    getSignals,
+    deleteSignal
 } = require('../controllers/signalController');
 
 const router = express.Router();
@@ -15,5 +16,8 @@ router.get('/', getSignals);
 
 // get a single signal route
 router.get('/:id', getSignal);
+
+// delete a signal route
+router.delete('/:id', deleteSignal);
 
 module.exports = router;

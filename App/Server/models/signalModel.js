@@ -3,19 +3,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const signalSchema = new Schema({
-    title: {
+    type: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     lon: {
         type: Number,
-        required: true,
+        required: true
     },
     lat: {
         type: Number,
         required: true
+    },
+    expireAt: {
+        type: Date,
+        default: new Date(),
+        expires: 5
     }
-}, { timestamps: true });
+});
 
 module.exports = mongoose.model('Signal', signalSchema);

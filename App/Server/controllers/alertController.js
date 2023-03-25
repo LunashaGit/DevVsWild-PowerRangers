@@ -3,12 +3,12 @@ const Alert = require('../models/alertModel');
 
 // create an alert
 const createAlert = async (req, res) => {
-    const {title, content, lon, lat} = req.body;
+    const {title, description, lon, lat} = req.body;
 
     try {
         const alert = await Alert.create({
             title,
-            content,
+            description,
             lon,
             lat
         });
@@ -43,8 +43,32 @@ const getAlert = async (req, res) => {
     res.status(200).json(alert);
 }
 
+// delete an alert
+const deleteAlert = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({
+            error: 'No such alert'
+        })
+    }
+
+    const alert = await Alert.findOneAndDelete({
+        _id: id
+    });
+
+    if (!alert) {
+        return res.status(404).json({
+            error: 'No such alert'
+        })
+    }
+
+    res.status(200).json(alert);
+}
+
 module.exports = {
     createAlert,
     getAlerts,
-    getAlert
+    getAlert,
+    deleteAlert
 }

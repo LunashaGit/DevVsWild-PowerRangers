@@ -3,11 +3,11 @@ const Signal = require('../models/signalModel');
 
 // create a signal
 const createSignal = async (req, res) => {
-    const { title, lon, lat } = req.body;
+    const { type, lon, lat } = req.body;
 
     try {
         const signal = await Signal.create({
-            title,
+            type,
             lon,
             lat
         });
@@ -42,8 +42,32 @@ const getSignal = async (req, res) => {
     res.status(200).json(signal);
 }
 
+// delete a signal
+const deleteSignal = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({
+            error: 'No such signal'
+        })
+    }
+
+    const signal = await Signal.findOneAndDelete({
+        _id: id
+    });
+
+    if (!signal) {
+        return res.status(404).json({
+            error: 'No such signal'
+        })
+    }
+
+    res.status(200).json(signal);
+}
+
 module.exports = {
     createSignal,
     getSignals,
-    getSignal
+    getSignal,
+    deleteSignal
 };
