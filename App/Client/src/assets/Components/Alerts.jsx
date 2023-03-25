@@ -10,7 +10,7 @@ function Alerts() {
   return (
     <>
       {!showAlert && <AlertButton onClick={toggleAlert} />}
-      {showAlert && <AlertsList />}
+      {showAlert && <AlertsList onClick={toggleAlert} />}
     </>
   );
 }

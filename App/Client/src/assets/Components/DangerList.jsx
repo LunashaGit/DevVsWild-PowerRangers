@@ -1,4 +1,6 @@
-function DangerList() {
+import DangerCancel from "./DangerCancel";
+
+function DangerList(props) {
   const Dangers = [
     {
       id: 1,
@@ -36,6 +38,7 @@ function DangerList() {
           </li>
         ))}
       </ul>
+      <DangerCancel onClick={props.onClick} />
     </div>
   );
 }

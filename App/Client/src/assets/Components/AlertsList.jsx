@@ -1,4 +1,6 @@
-function AlertsList() {
+import AlertCancel from "./AlertCancel";
+
+function AlertsList(props) {
   const Alerts = [
     {
       id: 1,
@@ -36,6 +38,7 @@ function AlertsList() {
           </li>
         ))}
       </ul>
+      <AlertCancel onClick={props.onClick} />
     </div>
   );
 }
