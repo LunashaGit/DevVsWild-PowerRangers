@@ -8,6 +8,7 @@ import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
 
 export default function Homepage() {
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
   const [startPoint, setStartPoint] = useState(null);
   const [startCoords, setStartCoords] = useState(null);
   const [endCoords, setEndCoords] = useState(null);
@@ -58,6 +59,22 @@ export default function Homepage() {
     setShowSearchBar(false);
   }, []);
 
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 425) {
+      console.log(true);
+      setShowMobileWarning(true);
+    } else {
+      setShowMobileWarning(false);
+    }
+  });
+
+  if (showMobileWarning === true) {
+    return (
+      <div className="flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Work in progress for computer</h1>
+      </div>
+    );
+  }
   return (
     <div className="Homepage relative flex items-center justify-center">
       <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
