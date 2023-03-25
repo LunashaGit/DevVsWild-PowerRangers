@@ -100,7 +100,7 @@ export default function Homepage() {
           {!showSearchBar && <SearchBarButton onClick={toggleSearchBar}/>}
         </div>
         {showSearchBar && <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} startCoords={startCoords} setShowSearchBar={setShowSearchBar} results={results} />}
-        <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
+        <div className="absolute bottom-5 z-[5000] w-[95%] flex justify-between mx-5">
           <Alerts onClick={handlePopup} startCoords={startCoords} />
           <Signals onClick={handlePopup} startCoords={startCoords} />
         </div>
