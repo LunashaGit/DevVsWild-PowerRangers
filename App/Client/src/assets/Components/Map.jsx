@@ -1,12 +1,20 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "./RoutingMachine";
+import { useState, useCallback } from "react";
+import SearchBarButton from "./SearchBarButton";
+import SearchBarForm from "./SearchBarForm";
+
 function Map(props) {
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [valueForm, setValueForm] = useState([]);
+  const toggleSearchBar = useCallback(
+    () => setShowSearchBar((showSearchBar) => !showSearchBar),
+    []
+  );
 
   const latitude = props.startCoords.lat;
   const longitude = props.startCoords.lon;
-
-  console.log([latitude, longitude])
 
   return (
     <MapContainer
