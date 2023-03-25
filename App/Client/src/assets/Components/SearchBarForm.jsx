@@ -3,9 +3,9 @@ import ResultsList from "./ResultsList.jsx";
 
 function SearchBarForm(props) {
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log(props.results);
-    }, [props.results]);
+    }, [props.results]);*/
 
     return (
         <div className="absolute flex flex-col top-0 left-0 w-full h-full min-h-full bg-white z-[6000]">
@@ -37,6 +37,8 @@ function SearchBarForm(props) {
             <ResultsList
                 startCoords={props.startCoords}
                 results={props.results}
+                setEndCoords={props.setEndCoords}
+                setShowSearchBar={props.setShowSearchBar}
             />
             <div className="flex justify-center absolute bottom-10 w-full">
                 <div
