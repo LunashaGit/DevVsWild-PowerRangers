@@ -1,7 +1,6 @@
 import SignalCancel from "./SignalsCancel";
 import axios from "axios";
 function SignalList(props) {
-  console.log(props.startCoords);
   const Signals = [
     {
       id: 1,

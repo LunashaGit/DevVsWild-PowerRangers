@@ -1,5 +1,5 @@
 import AlertCancel from "./AlertCancel";
-
+import axios from "axios";
 function AlertsList(props) {
   const Alerts = [
     {
@@ -19,6 +19,19 @@ function AlertsList(props) {
     },
   ];
 
+  const AlertAPI = async (e) => {
+    console.log(e);
+    const response = await axios
+      .post("http://127.0.0.1:8080/api/alerts", {
+        title: e.title,
+        description: e.description,
+        lon: props.startCoords.lon,
+        lat: props.startCoords.lat,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
   return (
     <div
       style={{
@@ -33,6 +46,7 @@ function AlertsList(props) {
           <li
             className="list-group-item w-16 h-16 text-center text-white bg-black rounded-full"
             key={alert.id}
+            onClick={() => AlertAPI(alert)}
           >
             <h3>{alert.title}</h3>
           </li>
