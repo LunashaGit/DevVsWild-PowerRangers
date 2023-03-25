@@ -1,9 +1,13 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "./RoutingMachine";
-function Map() {
-  const latitude = 50.6327565;
-  const longitude = 5.5686243;
+function Map(props) {
+
+  const latitude = props.startCoords.lat;
+  const longitude = props.startCoords.lon;
+
+  console.log([latitude, longitude])
+
   return (
     <MapContainer
       center={[latitude, longitude]}
@@ -15,7 +19,9 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <RoutingMachine />
+      <RoutingMachine
+          startCoords={props.startCoords}
+      />
     </MapContainer>
   );
 }

@@ -5,6 +5,10 @@ import SearchBarForm from "../Components/SearchBarForm";
 import Map from "../Components/Map";
 
 export default function Homepage() {
+  const [startCoords, setStartCoords] = useState({
+    lat: 0,
+    lon: 0
+  });
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [valueForm, setValueForm] = useState([]);
   const toggleSearchBar = useCallback(
@@ -22,6 +26,15 @@ export default function Homepage() {
     }
   }, []);
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      setStartCoords({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      });
+    });
+  }, []);
+
   console.log(valueForm);
   return (
     <div className="Homepage">
@@ -29,7 +42,10 @@ export default function Homepage() {
         <SearchBarButton onClick={toggleSearchBar} />
         {showSearchBar && <SearchBarForm onSubmit={handleSubmit} />}
       </div>
-      <Map />
+      <Map
+          startCoords={startCoords}
+          endCoords={null}
+      />
     </div>
   );
 }
