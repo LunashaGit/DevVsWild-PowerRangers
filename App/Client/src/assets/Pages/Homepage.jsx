@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 import SearchBarButton from "../Components/SearchBarButton";
 import SearchBarForm from "../Components/SearchBarForm";
 import Alerts from "../Components/Alerts";
-import Signals from "../Components/Signals";
+import Discord from "../Components/Discord";
 import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
 
@@ -28,10 +28,11 @@ export default function Homepage() {
         setValueForm((valueForm) => [...valueForm, e.target[i].value]);
       }
     }
-      fetch(`https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`)
-          .then(response => response.json())
-          .then(data => setResults(data.features));
-
+    fetch(
+      `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
+    )
+      .then((response) => response.json())
+      .then((data) => setResults(data.features));
   }, []);
 
   useEffect(() => {
@@ -62,13 +63,12 @@ export default function Homepage() {
   }, []);
 
   if (!startCoords) {
-      return (
-          <>
-            <Loading />
-          </>
-      )
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
-
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 425) {
@@ -95,15 +95,23 @@ export default function Homepage() {
   }
 
   return (
-      <div className="Homepage relative flex items-center justify-center">
-        <div className="absolute top-5 flex justify-center w-full px-8 z-[5000]">
-          {!showSearchBar && <SearchBarButton onClick={toggleSearchBar}/>}
-        </div>
-        {showSearchBar && <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} startCoords={startCoords} setShowSearchBar={setShowSearchBar} results={results} />}
-        <div className="absolute bottom-5 z-[5000] w-[95%] flex justify-between mx-5">
-          <Alerts onClick={handlePopup} startCoords={startCoords} />
-          <Signals onClick={handlePopup} startCoords={startCoords} />
-        </div>
+    <div className="Homepage relative flex items-center justify-center">
+      <div className="absolute top-5 flex justify-center w-full px-8 z-[5000]">
+        {!showSearchBar && <SearchBarButton onClick={toggleSearchBar} />}
+      </div>
+      {showSearchBar && (
+        <SearchBarForm
+          onSubmit={handleSubmit}
+          startPoint={startPoint}
+          startCoords={startCoords}
+          setShowSearchBar={setShowSearchBar}
+          results={results}
+        />
+      )}
+      <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between gap-24">
+        <Alerts onClick={handlePopup} startCoords={startCoords} />
+        <Discord onClick={handlePopup} startCoords={startCoords} />
+      </div>
       {startCoords && (
         <Map
           onChange={handleCoords}
