@@ -66,7 +66,7 @@ export default function Homepage() {
           <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} />
         )}
       </div>
-      <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
+      <div className="absolute bottom-5 z-[5000] flex justify-between gap-48">
         <Danger onClick={handlePopup} />
         <Alerts onClick={handlePopup} />
       </div>

@@ -24,6 +24,9 @@ export default function RoutingMachine(props) {
       routingControl = L.Routing.control({
         waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon), L.latLng(props.endCoords.lat, props.endCoords.lon)],
         routeWhileDragging: true,
+        lineOptions: {
+          styles: [{color: '#E65728', opacity: 1, weight: 5}]
+        },
       }).addTo(map);
     }
 
