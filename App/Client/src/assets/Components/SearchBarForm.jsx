@@ -13,8 +13,8 @@ function SearchBarForm(props) {
     return (
     <>
       <form
-          className="flex justify-center items-center flex-col gap-4"
-          onSubmit={props.onSubmit}
+        className="flex justify-center items-center flex-col gap-4"
+        onSubmit={props.onSubmit}
       >
         <input
           className="rounded-full"
