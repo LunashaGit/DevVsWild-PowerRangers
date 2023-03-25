@@ -89,7 +89,7 @@ function AlertsList(props) {
     }
     return (
         <div
-            className="alert alert-danger absolute w-screen h-screen -top-[652px] -left-[132px] bg-white dark:bg-greyNight z-[6000] flex flex-col justify-items-center"
+            className="alert alert-danger absolute w-screen h-screen -top-[652px] -left-2 bg-white dark:bg-greyNight z-[6000] flex flex-col justify-items-center"
             role="alert"
         >
             <h2 className="text-blackNero dark:text-white text-xl font-thin text-center m-14">
