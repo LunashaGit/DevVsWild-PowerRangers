@@ -18,6 +18,7 @@ export default function Homepage() {
     () => setShowSearchBar((showSearchBar) => !showSearchBar),
     []
   );
+  const [results, setResults] = useState([]);
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -31,12 +32,7 @@ export default function Homepage() {
       `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
     )
       .then((response) => response.json())
-      .then((data) =>
-        setEndCoords({
-          lat: data.features[0].properties.lat,
-          lon: data.features[0].properties.lon,
-        })
-      );
+      .then((data) => setResults(data.features));
   }, []);
 
   useEffect(() => {
@@ -66,6 +62,14 @@ export default function Homepage() {
     });
   }, []);
 
+  if (!startCoords) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
+  }
+
   window.addEventListener("resize", () => {
     if (window.innerWidth > 425) {
       console.log(true);
@@ -92,13 +96,19 @@ export default function Homepage() {
 
   return (
     <div className="Homepage relative flex items-center justify-center">
-      <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
+      <div className="absolute top-5 flex justify-center w-full px-8 z-[5000]">
         {!showSearchBar && <SearchBarButton onClick={toggleSearchBar} />}
-        {showSearchBar && (
-          <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} />
-        )}
       </div>
-      <div className="absolute bottom-5 z-[5000] flex justify-between gap-48">
+      {showSearchBar && (
+        <SearchBarForm
+          onSubmit={handleSubmit}
+          startPoint={startPoint}
+          startCoords={startCoords}
+          setShowSearchBar={setShowSearchBar}
+          results={results}
+        />
+      )}
+      <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
         <Alerts onClick={handlePopup} startCoords={startCoords} />
         <Discord onClick={handlePopup} startCoords={startCoords} />
       </div>
