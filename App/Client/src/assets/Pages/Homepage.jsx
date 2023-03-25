@@ -106,6 +106,7 @@ export default function Homepage() {
                 startCoords={startCoords}
                 setShowSearchBar={setShowSearchBar}
                 results={results}
+                setEndCoords={setEndCoords}
             />
         )}
         <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">

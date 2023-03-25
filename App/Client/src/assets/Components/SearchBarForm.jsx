@@ -3,9 +3,9 @@ import ResultsList from "./ResultsList.jsx";
 
 function SearchBarForm(props) {
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log(props.results);
-    }, [props.results]);
+    }, [props.results]);*/
 
     return (
         <div className="absolute flex flex-col top-0 left-0 w-full h-full min-h-full bg-white z-[6000]">
