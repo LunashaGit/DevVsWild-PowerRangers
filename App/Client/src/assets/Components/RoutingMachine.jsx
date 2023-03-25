@@ -14,15 +14,22 @@ export default function RoutingMachine(props) {
   useEffect(() => {
     if (!map) return;
 
-    const routingControl = L.Routing.control({
-      waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon), L.latLng(57.6792, 11.949)],
+    let routingControl = L.Routing.control({
+      waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon)],
       routeWhileDragging: true,
     }).addTo(map);
+
+    if (props.endCoords) {
+      routingControl = L.Routing.control({
+        waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon), L.latLng(props.endCoords.lat, props.endCoords.lon)],
+        routeWhileDragging: true,
+      }).addTo(map);
+    }
 
     map.setView([props.startCoords.lat, props.startCoords.lon], 20);
 
     return () => map.removeControl(routingControl);
-  }, [map]);
+  }, [map, props.endCoords]);
 
   return null;
 }

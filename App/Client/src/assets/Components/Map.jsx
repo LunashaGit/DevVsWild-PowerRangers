@@ -34,6 +34,7 @@ function Map(props) {
       />
       <RoutingMachine
           startCoords={props.startCoords}
+          endCoords={props.endCoords}
       />
     </MapContainer>
   );
