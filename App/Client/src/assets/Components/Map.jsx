@@ -33,8 +33,9 @@ function Map(props) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <RoutingMachine
-          startCoords={props.startCoords}
-          endCoords={props.endCoords}
+        onChange={props.onChange}
+        startCoords={props.startCoords}
+        endCoords={props.endCoords}
       />
     </MapContainer>
   );
