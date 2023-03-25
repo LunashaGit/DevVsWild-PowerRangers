@@ -26,12 +26,16 @@ export default function ResultsList(props) {
         return(Math.trunc(c * r));
     }
 
+    function handleClick(result) {
+        props.setEndCoords({lat: result.properties.lat, lon: result.properties.lon});
+        props.setShowSearchBar(false);
+    }
 
     return (
         <div className="px-3 max-h-[520px]">
             {props.results && props.results.map((result, key) => {
                 return (
-                    <div key={key} className="flex mx-auto items-center justify-between mt-10 w-[90%] border-b-2 pb-2">
+                    <div onClick={() => handleClick(result)} key={key} className="flex mx-auto items-center justify-between mt-10 w-[90%] border-b-2 pb-2">
                         <div className="font-bold text-[16px]">{distance(props.startCoords.lat, result.properties.lat, props.startCoords.lon, result.properties.lon)} km</div>
                         <div className="flex flex-col min-w-[200px] max-w-[200px]">
                             <p className="text-[16px]">{result.properties.address_line1}</p>

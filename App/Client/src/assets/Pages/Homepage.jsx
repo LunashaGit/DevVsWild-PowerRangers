@@ -108,7 +108,7 @@ export default function Homepage() {
           results={results}
         />
       )}
-      <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between gap-24">
+      <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between">
         <Alerts onClick={handlePopup} startCoords={startCoords} />
         <Discord onClick={handlePopup} startCoords={startCoords} />
       </div>
