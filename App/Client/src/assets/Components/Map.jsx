@@ -31,7 +31,7 @@ function Map(props) {
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        className="dark:brightness-75 dark:invert dark:contrast-200 dark:hue-rotate-180 dark:saturate-200"
+        className="dark:grayscale dark:brightness-50"
       />
       <RoutingMachine
         onChange={props.onChange}

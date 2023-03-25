@@ -106,10 +106,9 @@ export default function Homepage() {
           startCoords={startCoords}
           setShowSearchBar={setShowSearchBar}
           results={results}
-          setEndCoords={setEndCoords}
         />
       )}
-      <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
+      <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between">
         <Discord onClick={handlePopup} startCoords={startCoords} />
         <Alerts onClick={handlePopup} startCoords={startCoords} />
       </div>
