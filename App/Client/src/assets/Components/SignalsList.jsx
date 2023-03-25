@@ -1,7 +1,7 @@
-import DangerCancel from "./DangerCancel";
+import SignalCancel from "./SignalsCancel";
 
-function DangerList(props) {
-  const Dangers = [
+function SignalList(props) {
+  const Signals = [
     {
       id: 1,
       title: "Alert 1",
@@ -25,22 +25,22 @@ function DangerList(props) {
         height: "100vh",
         width: "100vw",
       }}
-      className="alert alert-danger"
+      className="alert alert-Signal"
       role="alert"
     >
       <ul className="list-group flex flex-wrap gap-4 justify-center left-1/4 right-1/4 absolute top-[100px]">
-        {Dangers.map((Danger) => (
+        {Signals.map((Signal) => (
           <li
             className="list-group-item w-16 h-16 text-center text-white bg-black rounded-full"
-            key={Danger.id}
+            key={Signal.id}
           >
-            <h3>{Danger.title}</h3>
+            <h3>{Signal.title}</h3>
           </li>
         ))}
       </ul>
-      <DangerCancel onClick={props.onClick} />
+      <SignalCancel onClick={props.onClick} />
     </div>
   );
 }
 
-export default DangerList;
+export default SignalList;

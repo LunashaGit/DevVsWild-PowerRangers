@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 import SearchBarButton from "../Components/SearchBarButton";
 import SearchBarForm from "../Components/SearchBarForm";
 import Alerts from "../Components/Alerts";
-import Danger from "../Components/Danger";
+import Signals from "../Components/Signals";
 import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
 
@@ -84,8 +84,8 @@ export default function Homepage() {
         )}
       </div>
       <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
-        <Danger onClick={handlePopup} />
         <Alerts onClick={handlePopup} />
+        <Signals onClick={handlePopup} />
       </div>
       {startCoords && <Map startCoords={startCoords} endCoords={endCoords} />}
     </div>

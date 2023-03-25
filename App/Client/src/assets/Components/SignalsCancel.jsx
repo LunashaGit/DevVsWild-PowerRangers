@@ -1,4 +1,4 @@
-function DangerCancel(props) {
+function SignalCancel(props) {
   return (
     <>
       <button
@@ -11,4 +11,4 @@ function DangerCancel(props) {
   );
 }
 
-export default DangerCancel;
+export default SignalCancel;
