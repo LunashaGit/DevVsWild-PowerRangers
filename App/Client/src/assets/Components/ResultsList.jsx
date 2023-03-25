@@ -23,6 +23,10 @@ export default function ResultsList(props) {
         let r = 3956;
 
         // calculate the result
+        if (Math.trunc(c * r) < 1) {
+            return ((c * r).toFixed(2))
+        }
+
         return(Math.trunc(c * r));
     }
 
@@ -35,7 +39,7 @@ export default function ResultsList(props) {
         <div className="px-3 max-h-[520px]">
             {props.results && props.results.map((result, key) => {
                 return (
-                    <div onClick={() => handleClick(result)} key={key} className="flex mx-auto items-center justify-between mt-10 w-[90%] border-b-2 pb-2">
+                    <div onClick={() => handleClick(result)} key={key} className="flex mx-auto items-center justify-between mt-10 w-[90%] border-b-2 pb-2 dark:text-white">
                         <div className="font-bold text-[16px]">{distance(props.startCoords.lat, result.properties.lat, props.startCoords.lon, result.properties.lon)} km</div>
                         <div className="flex flex-col min-w-[200px] max-w-[200px]">
                             <p className="text-[16px]">{result.properties.address_line1}</p>

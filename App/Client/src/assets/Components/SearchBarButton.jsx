@@ -3,7 +3,7 @@ function SearchBarButton(props) {
     <>
       <button
           onClick={props.onClick}
-          className="flex justify-between items-center text-[#D9D9D9] bg-opacity-90 shadow-2xl px-5 w-full h-[40px] rounded-3xl bg-white"
+          className="flex justify-between items-center text-[#D9D9D9] bg-opacity-90 shadow-2xl px-5 w-full h-[40px] rounded-3xl bg-white dark:bg-[#2D2D2D]"
       >
           Destination
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-[#E65728] w-6 h-6">

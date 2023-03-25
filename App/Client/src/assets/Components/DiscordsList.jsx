@@ -4,23 +4,27 @@ function DiscordList(props) {
   const Discords = [
     {
       id: 1,
-      title: "Poisonous",
+      title: "Animal Attack",
     },
     {
       id: 2,
-      title: "Slippery",
+      title: "No ressources",
     },
     {
       id: 3,
-      title: "Block",
+      title: "Lost",
     },
     {
       id: 4,
-      title: "Snow",
+      title: "Unsafe",
     },
     {
       id: 5,
-      title: "Insect",
+      title: "Injured",
+    },
+    {
+      id: 6,
+      title: "Stucked",
     },
   ];
 
