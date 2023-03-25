@@ -29,7 +29,7 @@ export default function Homepage() {
       }
     }
     fetch(
-      `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&bias=circle:${startCoords.lat},${startCoords.lon},500000&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
+      `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
     )
       .then((response) => response.json())
       .then((data) => setResults(data.features));
@@ -82,7 +82,7 @@ export default function Homepage() {
   if (showMobileWarning === true) {
     return (
       <div className="flex flex-col items-center h-[100vh] justify-center gap-4 structure dark:bg-greyNight">
-        <section className="bg-orangeFox dark:bg-dimGray w-96 rounded-lg shadowtext-center p-11">
+        <section className="bg-orangeFox dark:bg-dimGray w-96 rounded-lg shadow text-center p-11">
           <h1 className="text-center text-2xl font-bold text-white">
             Work in progress
           </h1>
@@ -106,6 +106,7 @@ export default function Homepage() {
           startCoords={startCoords}
           setShowSearchBar={setShowSearchBar}
           results={results}
+          setEndCoords={setEndCoords}
         />
       )}
       <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between">
