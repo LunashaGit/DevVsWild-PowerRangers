@@ -5,7 +5,7 @@ const Loading = () => {
         <div className="h-screen flex flex-col justify-center gap-20 bg-white dark:bg-orangeFox ">
             <picture className="self-center">
                 <source
-                    srcset="../src/assets/images/foxtrot-low-resolution-logo-white-on-transparent-background.svg"
+                    srcSet="../src/assets/images/foxtrot-low-resolution-logo-white-on-transparent-background.svg"
                     media="(prefers-color-scheme: dark)"
                 />
                 <img
@@ -25,7 +25,7 @@ const Loading = () => {
                 </p>
                 <svg
                     aria-hidden="true"
-                    class="inline w-8 h-8 mr-2 text-orangeFox/40 animate-spin dark:text-white/40 fill-orangeFox dark:fill-white"
+                    className="inline w-8 h-8 mr-2 text-orangeFox/40 animate-spin dark:text-white/40 fill-orangeFox dark:fill-white"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
