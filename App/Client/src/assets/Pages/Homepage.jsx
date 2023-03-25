@@ -5,10 +5,7 @@ import SearchBarForm from "../Components/SearchBarForm";
 import Map from "../Components/Map";
 
 export default function Homepage() {
-  const [startCoords, setStartCoords] = useState({
-    lat: 0,
-    lon: 0
-  });
+  const [startCoords, setStartCoords] = useState(null);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [valueForm, setValueForm] = useState([]);
   const toggleSearchBar = useCallback(
@@ -35,17 +32,18 @@ export default function Homepage() {
     });
   }, []);
 
-  console.log(valueForm);
+  //console.log(valueForm);
+
   return (
     <div className="Homepage relative">
       <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
         {!showSearchBar && <SearchBarButton onClick={toggleSearchBar} />}
-        {showSearchBar && <SearchBarForm onSubmit={handleSubmit} />}
+        {showSearchBar && <SearchBarForm onSubmit={handleSubmit} startCoords={startCoords} />}
       </div>
-      <Map
+      {startCoords && <Map
           startCoords={startCoords}
           endCoords={null}
-      />
+      />}
     </div>
   );
 }
