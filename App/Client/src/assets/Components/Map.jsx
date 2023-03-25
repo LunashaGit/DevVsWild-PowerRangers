@@ -1,7 +1,28 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "./RoutingMachine";
+import { useState, useCallback } from "react";
+import SearchBarButton from "./SearchBarButton";
+import SearchBarForm from "./SearchBarForm";
 function Map() {
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [valueForm, setValueForm] = useState([]);
+  const toggleSearchBar = useCallback(
+    () => setShowSearchBar((showSearchBar) => !showSearchBar),
+    []
+  );
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    setValueForm([]);
+    for (let i = 0; i < e.target.length; i++) {
+      if (e.target[i].value) {
+        setValueForm((valueForm) => [...valueForm, e.target[i].value]);
+      }
+    }
+  }, []);
+  console.log(valueForm);
+
   const latitude = 50.6327565;
   const longitude = 5.5686243;
   return (

@@ -24,9 +24,9 @@ export default function Homepage() {
 
   console.log(valueForm);
   return (
-    <div className="Homepage">
-      <div>
-        <SearchBarButton onClick={toggleSearchBar} />
+    <div className="Homepage relative">
+      <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
+        {!showSearchBar && <SearchBarButton onClick={toggleSearchBar} />}
         {showSearchBar && <SearchBarForm onSubmit={handleSubmit} />}
       </div>
       <Map />
