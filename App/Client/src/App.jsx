@@ -4,6 +4,8 @@ import Error404 from "./assets/Pages/Error404";
 import Testing from "./assets/Pages/Testing";
 import "./App.css";
 
+console.log(import.meta.env.VITE_OPENWEATHER);
+console.log(import.meta.env.VITE_GEOAPIFY);
 function App() {
   return (
     <Routes>
