@@ -109,8 +109,8 @@ export default function Homepage() {
         />
       )}
       <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
-        <Alerts onClick={handlePopup} startCoords={startCoords} />
         <Discord onClick={handlePopup} startCoords={startCoords} />
+        <Alerts onClick={handlePopup} startCoords={startCoords} />
       </div>
       {startCoords && (
         <Map
