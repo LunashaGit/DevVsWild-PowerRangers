@@ -1,30 +1,29 @@
-import AlertCancel from "./AlertCancel";
+import SignalCancel from "./SignalsCancel";
 import axios from "axios";
-function AlertsList(props) {
-  const Alerts = [
+function SignalList(props) {
+  const Signals = [
     {
       id: 1,
-      title: "Alert 1",
+      title: "AlertOne",
       description: "This is the first alert",
     },
     {
       id: 2,
-      title: "Alert 2",
+      title: "AlertTwo",
       description: "This is the second alert",
     },
     {
       id: 3,
-      title: "Alert 3",
+      title: "AlertThree",
       description: "This is the third alert",
     },
   ];
 
-  const AlertAPI = async (e) => {
+  const SignalAPI = async (e) => {
     console.log(e);
     const response = await axios
-      .post("http://127.0.0.1:8080/api/alerts", {
-        title: e.title,
-        description: e.description,
+      .post("http://127.0.0.1:8080/api/signals", {
+        type: e.title,
         lon: props.startCoords.lon,
         lat: props.startCoords.lat,
       })
@@ -38,23 +37,23 @@ function AlertsList(props) {
         height: "100vh",
         width: "100vw",
       }}
-      className="alert alert-danger"
+      className="alert alert-Signal"
       role="alert"
     >
       <ul className="list-group flex flex-wrap gap-4 justify-center left-1/4 right-1/4 absolute top-[100px]">
-        {Alerts.map((alert) => (
+        {Signals.map((Signal) => (
           <li
             className="list-group-item w-16 h-16 text-center text-white bg-black rounded-full"
-            key={alert.id}
-            onClick={() => AlertAPI(alert)}
+            key={Signal.id}
+            onClick={() => SignalAPI(Signal)}
           >
-            <h3>{alert.title}</h3>
+            <h3>{Signal.title}</h3>
           </li>
         ))}
       </ul>
-      <AlertCancel onClick={props.onClick} />
+      <SignalCancel onClick={props.onClick} />
     </div>
   );
 }
 
-export default AlertsList;
+export default SignalList;

@@ -3,11 +3,12 @@ import { useState, useCallback, useEffect } from "react";
 import SearchBarButton from "../Components/SearchBarButton";
 import SearchBarForm from "../Components/SearchBarForm";
 import Alerts from "../Components/Alerts";
-import Danger from "../Components/Danger";
+import Signals from "../Components/Signals";
 import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
 
 export default function Homepage() {
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
   const [startPoint, setStartPoint] = useState(null);
   const [startCoords, setStartCoords] = useState(null);
   const [endCoords, setEndCoords] = useState(null);
@@ -58,6 +59,37 @@ export default function Homepage() {
     setShowSearchBar(false);
   }, []);
 
+  const handleCoords = useCallback((e) => {
+    setStartCoords({
+      lat: e.lat,
+      lon: e.lon,
+    });
+  }, []);
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 425) {
+      console.log(true);
+      setShowMobileWarning(true);
+    } else {
+      setShowMobileWarning(false);
+    }
+  });
+
+  if (showMobileWarning === true) {
+    return (
+      <div className="flex flex-col items-center h-[100vh] justify-center gap-4 structure dark:bg-greyNight">
+        <section className="bg-orangeFox dark:bg-dimGray w-96 rounded-lg shadowtext-center p-11">
+          <h1 className="text-center text-2xl font-bold text-white">
+            Work in progress
+          </h1>
+          <h2 className="text-xl text-center text-white">
+            The computer version is still in the making, be patient !
+          </h2>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="Homepage relative flex items-center justify-center">
       <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
@@ -66,11 +98,17 @@ export default function Homepage() {
           <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} />
         )}
       </div>
-      <div className="absolute bottom-5 z-[5000] flex justify-between gap-48">
-        <Danger onClick={handlePopup} />
-        <Alerts onClick={handlePopup} />
+      <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
+        <Alerts onClick={handlePopup} startCoords={startCoords} />
+        <Signals onClick={handlePopup} startCoords={startCoords} />
       </div>
-      {startCoords && <Map startCoords={startCoords} endCoords={endCoords} />}
+      {startCoords && (
+        <Map
+          onChange={handleCoords}
+          startCoords={startCoords}
+          endCoords={endCoords}
+        />
+      )}
     </div>
   );
 }
