@@ -15,14 +15,14 @@ const signalSchema = new Schema({
     type: Number,
     required: true,
   },
-  expireAt: {
-    type: Date,
-    default: Date.now,
-    index: { expires: 1 / 1000 },
-  },
+  // expireAt: {
+  //   type: Date,
+  //   default: Date.now,
+  //   index: { expires: 1 / 1000 },
+  // },
 });
 
-signalSchema.index({ expireAt: "1s" }, { expireAfterSeconds: 0 });
+// signalSchema.index({ expireAt: "1s" }, { expireAfterSeconds: 0 });
 
 const Signal = mongoose.model("Signal", signalSchema);
 
