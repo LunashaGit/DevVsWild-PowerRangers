@@ -104,10 +104,13 @@ export default function Homepage() {
           <Alerts onClick={handlePopup} startCoords={startCoords} />
           <Signals onClick={handlePopup} startCoords={startCoords} />
         </div>
-        {startCoords && <Map
-            startCoords={startCoords}
-            endCoords={endCoords}
-        />}
-      </div>
+      {startCoords && (
+        <Map
+          onChange={handleCoords}
+          startCoords={startCoords}
+          endCoords={endCoords}
+        />
+      )}
+    </div>
   );
 }
