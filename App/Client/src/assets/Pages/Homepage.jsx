@@ -5,9 +5,12 @@ import SearchBarForm from "../Components/SearchBarForm";
 import Alerts from "../Components/Alerts";
 import Danger from "../Components/Danger";
 import Map from "../Components/Map";
+import Loading from "../Components/Loading.jsx";
 
 export default function Homepage() {
+  const [startPoint, setStartPoint] = useState(null);
   const [startCoords, setStartCoords] = useState(null);
+  const [endCoords, setEndCoords] = useState(null);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [valueForm, setValueForm] = useState([]);
   const toggleSearchBar = useCallback(
@@ -23,10 +26,19 @@ export default function Homepage() {
         setValueForm((valueForm) => [...valueForm, e.target[i].value]);
       }
     }
+    fetch(`https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`)
+        .then(response => response.json())
+        .then(data => setEndCoords({
+          lat: data.features[0].properties.lat,
+          lon: data.features[0].properties.lon
+        }));
   }, []);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
+        fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`)
+            .then(response => response.json())
+            .then(data => setStartPoint(data.features[0].properties.address_line1))
       setStartCoords({
         lat: position.coords.latitude,
         lon: position.coords.longitude,

@@ -10,7 +10,7 @@ function Danger() {
   return (
     <>
       {!showDanger && <DangerButton onClick={toggleDanger} />}
-      {showDanger && <DangersList />}
+      {showDanger && <DangersList onClick={toggleDanger} />}
     </>
   );
 }
