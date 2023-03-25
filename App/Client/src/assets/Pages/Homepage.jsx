@@ -29,7 +29,7 @@ export default function Homepage() {
       }
     }
     fetch(
-      `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
+      `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&bias=circle:${startCoords.lat},${startCoords.lon},500000&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
     )
       .then((response) => response.json())
       .then((data) => setResults(data.features));
