@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "./RoutingMachine";
-import {useState, useCallback, useEffect} from "react";
+import { useState, useCallback, useEffect } from "react";
 import SearchBarButton from "./SearchBarButton";
 import SearchBarForm from "./SearchBarForm";
 
@@ -32,9 +32,7 @@ function Map(props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <RoutingMachine
-          startCoords={props.startCoords}
-      />
+      <RoutingMachine startCoords={props.startCoords} />
     </MapContainer>
   );
 }
