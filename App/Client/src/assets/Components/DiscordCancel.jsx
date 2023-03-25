@@ -1,4 +1,4 @@
-function SignalCancel(props) {
+function DiscordCancel(props) {
   return (
     <>
       <button
@@ -11,4 +11,4 @@ function SignalCancel(props) {
   );
 }
 
-export default SignalCancel;
+export default DiscordCancel;
