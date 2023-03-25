@@ -95,7 +95,6 @@ export default function Homepage() {
   }
 
   return (
-<<<<<<< HEAD
       <div className="Homepage relative flex items-center justify-center">
         <div className="absolute top-5 flex justify-center w-full px-8 z-[5000]">
           {!showSearchBar && <SearchBarButton onClick={toggleSearchBar}/>}
