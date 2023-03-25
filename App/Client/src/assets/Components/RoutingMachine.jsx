@@ -19,6 +19,8 @@ export default function RoutingMachine(props) {
       routeWhileDragging: true,
     }).addTo(map);
 
+    map.setView([props.startCoords.lat, props.startCoords.lon], 20);
+
     return () => map.removeControl(routingControl);
   }, [map]);
 

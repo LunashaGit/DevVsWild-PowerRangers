@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import RoutingMachine from "./RoutingMachine";
-import { useState, useCallback } from "react";
+import {useState, useCallback, useEffect} from "react";
 import SearchBarButton from "./SearchBarButton";
 import SearchBarForm from "./SearchBarForm";
 
@@ -13,8 +13,13 @@ function Map(props) {
     []
   );
 
-  const latitude = props.startCoords.lat;
-  const longitude = props.startCoords.lon;
+  const [latitude, setLatitude] = useState(props.startCoords.lat);
+  const [longitude, setLongitude] = useState(props.startCoords.lon);
+
+  useEffect(() => {
+    setLatitude(props.startCoords.lat);
+    setLongitude(props.startCoords.lon);
+  }, [props.startCoords]);
 
   return (
     <MapContainer
