@@ -25,19 +25,27 @@ export default function Homepage() {
         setValueForm((valueForm) => [...valueForm, e.target[i].value]);
       }
     }
-    fetch(`https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`)
-        .then(response => response.json())
-        .then(data => setEndCoords({
+    fetch(
+      `https://api.geoapify.com/v1/geocode/search?text="${e.target[1].value}"&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
+    )
+      .then((response) => response.json())
+      .then((data) =>
+        setEndCoords({
           lat: data.features[0].properties.lat,
-          lon: data.features[0].properties.lon
-        }));
+          lon: data.features[0].properties.lon,
+        })
+      );
   }, []);
 
   useEffect(() => {
-      fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`)
-          .then(response => response.json())
-          .then(data => setStartPoint(data.features[0].properties.address_line1))
     navigator.geolocation.getCurrentPosition(function (position) {
+      fetch(
+        `https://api.geoapify.com/v1/geocode/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&apiKey=a203d55a7a1f46cda1aef5ce6655c14c`
+      )
+        .then((response) => response.json())
+        .then((data) =>
+          setStartPoint(data.features[0].properties.address_line1)
+        );
       setStartCoords({
         lat: position.coords.latitude,
         lon: position.coords.longitude,
@@ -45,20 +53,23 @@ export default function Homepage() {
     });
   }, []);
 
+  const handlePopup = useCallback(() => {
+    setShowSearchBar(false);
+  }, []);
+
   return (
     <div className="Homepage relative flex items-center justify-center">
       <div className="absolute top-5 flex justify-center left-1/4 right-1/4 z-[5000]">
         {!showSearchBar && <SearchBarButton onClick={toggleSearchBar} />}
-        {showSearchBar && <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} />}
+        {showSearchBar && (
+          <SearchBarForm onSubmit={handleSubmit} startPoint={startPoint} />
+        )}
       </div>
       <div className="absolute bottom-5 z-[5000] flex justify-between gap-24">
-        <Danger />
-        <Alerts />
+        <Danger onClick={handlePopup} />
+        <Alerts onClick={handlePopup} />
       </div>
-        {startCoords && <Map
-            startCoords={startCoords}
-            endCoords={endCoords}
-        />}
+      {startCoords && <Map startCoords={startCoords} endCoords={endCoords} />}
     </div>
   );
 }
