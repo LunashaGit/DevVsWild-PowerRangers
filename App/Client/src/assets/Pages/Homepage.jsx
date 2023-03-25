@@ -56,7 +56,7 @@ export default function Homepage() {
           <SearchBarForm onSubmit={handleSubmit} startCoords={startCoords} />
         )}
       </div>
-      <div className="absolute bottom-5 z-[5000] flex justify-between gap-56">
+      <div className="absolute bottom-5 z-[5000] flex justify-between gap-48">
         <Danger />
         <Alerts />
       </div>
