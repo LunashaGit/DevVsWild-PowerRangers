@@ -70,8 +70,15 @@ export default function Homepage() {
 
   if (showMobileWarning === true) {
     return (
-      <div className="flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Work in progress for computer</h1>
+      <div className="flex flex-col items-center h-[100vh] justify-center gap-4 structure dark:bg-greyNight">
+        <section className="bg-orangeFox dark:bg-dimGray w-96 rounded-lg shadowtext-center p-11">
+          <h1 className="text-center text-2xl font-bold text-white">
+            Work in progress
+          </h1>
+          <h2 className="text-xl text-center text-white">
+            The computer version is still in the making, be patient !
+          </h2>
+        </section>
       </div>
     );
   }
