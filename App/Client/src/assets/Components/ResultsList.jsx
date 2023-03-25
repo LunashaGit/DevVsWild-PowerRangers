@@ -41,9 +41,9 @@ export default function ResultsList(props) {
                 return (
                     <div onClick={() => handleClick(result)} key={key} className="flex mx-auto items-center justify-between mt-10 w-[90%] border-b-2 pb-2 dark:text-white">
                         <div className="font-bold text-[16px]">{distance(props.startCoords.lat, result.properties.lat, props.startCoords.lon, result.properties.lon)} km</div>
-                        <div className="flex flex-col min-w-[200px] max-w-[200px]">
+                        <div className="flex flex-col min-w-[200px] max-w-[200px] max-h-[70px]">
                             <p className="text-[16px]">{result.properties.address_line1}</p>
-                            <p className="text-[12px]">{result.properties.formatted}</p>
+                            <p className="text-[12px] truncate">{result.properties.formatted}</p>
                         </div>
                         <div className="flex items-center">
                             <span className="pr-2">5</span>
