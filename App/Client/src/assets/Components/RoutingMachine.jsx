@@ -15,9 +15,10 @@ export default function RoutingMachine(props) {
     if (!map) return;
 
     let routingControl = L.Routing.control({
-      waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon)],
-      routeWhileDragging: true,
-    }).addTo(map);
+          waypoints: [L.latLng(props.startCoords.lat, props.startCoords.lon)],
+          routeWhileDragging: true,
+      }).addTo(map);
+
 
     if (props.endCoords) {
       routingControl = L.Routing.control({
@@ -27,6 +28,8 @@ export default function RoutingMachine(props) {
     }
 
     map.setView([props.startCoords.lat, props.startCoords.lon], 20);
+
+    document.getElementsByClassName("leaflet-right")[0].style.display = "none";
 
     return () => map.removeControl(routingControl);
   }, [map, props.endCoords]);
