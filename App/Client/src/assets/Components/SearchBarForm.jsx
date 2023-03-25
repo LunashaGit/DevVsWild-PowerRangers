@@ -37,6 +37,8 @@ function SearchBarForm(props) {
             <ResultsList
                 startCoords={props.startCoords}
                 results={props.results}
+                setEndCoords={props.setEndCoords}
+                setShowSearchBar={props.setShowSearchBar}
             />
             <div className="flex justify-center absolute bottom-10 w-full">
                 <div
