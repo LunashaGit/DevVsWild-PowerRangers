@@ -1,11 +1,5 @@
-import Alerts from "../Components/Alerts";
-
 function Testing() {
-  return (
-    <div>
-      <Alerts />
-    </div>
-  );
+  return;
 }
 
 export default Testing;
