@@ -40,7 +40,7 @@ function SearchBarForm(props) {
                 setEndCoords={props.setEndCoords}
                 setShowSearchBar={props.setShowSearchBar}
             />
-            <div className="flex justify-center absolute bottom-10 w-full">
+            <div className="flex justify-center absolute bottom-20 w-full">
                 <div
                     className="bg-[#E65728] text-white p-2 rounded-full shadow-2xl"
                     onClick={() => props.setShowSearchBar(false)}
