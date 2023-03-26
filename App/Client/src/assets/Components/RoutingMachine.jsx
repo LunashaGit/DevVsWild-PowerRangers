@@ -117,19 +117,15 @@ export default function RoutingMachine(props) {
   }, [map, props.endCoords, Signals, Alerts, props.idAlert]);
 
 const getNearestAlert = (alerts) => {
-  let nearest = null;
-  let nearestDistance = 0.0;
+  let nearest = alerts[0];
+  let nearestDistance = Math.acos(Math.sin(props.startCoords.lat)*Math.sin(alerts[0].lat)+Math.cos(props.startCoords.lat)*Math.cos(alerts[0].lat)*Math.cos(alerts[0].lon-props.startCoords.lon))*6371;
 
   alerts.forEach((alert) => {
-    const distance = Math.acos(Math.sin(props.startCoords.lat)*Math.sin(alert.lat)+Math.cos(props.startCoords.lat)*Math.cos(alert.lat)*Math.cos(alert.lon-props.startCoords.lon))*6371
+    let distance = Math.acos(Math.sin(props.startCoords.lat)*Math.sin(alert.lat)+Math.cos(props.startCoords.lat)*Math.cos(alert.lat)*Math.cos(alert.lon-props.startCoords.lon))*6371
 
-    if (!nearest) {
-      nearest = alert;
+    if (distance < nearestDistance) {
+      console.log('pass')
       nearestDistance = distance;
-    }
-    else {
-      if (distance < nearestDistance)
-        nearestDistance = distance
       nearest = alert;
     }
   })
@@ -140,16 +136,14 @@ const getNearestAlert = (alerts) => {
 }
 
   useEffect(() => {
-    if (Alerts.length > 1) {
+    if (Alerts.length > 0) {
       const nearestAlert = getNearestAlert(Alerts);
 
-      console.log(nearestAlert);
-
-      /*if (distance < 4.5) {
-        console.log(Alert);
-        setAlertToSend(Alert);
+      if (nearestAlert.distance < 4.5) {
+        console.log(nearestAlert)
+        setAlertToSend(nearestAlert);
         setShowAlertPopUp(true);
-      }*/
+      }
     }
 
   }, [props.startCoords]);
