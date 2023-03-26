@@ -89,13 +89,13 @@ function AlertsList(props) {
     }
     return (
         <div
-            className="alert alert-danger w-screen h-screen bg-white dark:bg-greyNight z-[1] flex flex-col justify-items-center fixed inset-0 px-5"
+            className="alert alert-danger w-screen h-screen bg-white dark:bg-greyNight z-[1] flex flex-col justify-items-center fixed inset-0"
             role="alert"
         >
             <h2 className="text-blackNero dark:text-white text-xl font-thin text-center m-14">
                 Send your alert
             </h2>
-            <div className="flex flex-col gap-16">
+            <div className="flex flex-col gap-16 px-5">
                 <ul className="list-group flex flex-wrap gap-x-4 gap-y-16 justify-center">
                     {Signals.map((Signal) => (
                         <li
