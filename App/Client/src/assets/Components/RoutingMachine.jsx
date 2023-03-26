@@ -13,8 +13,6 @@ export default function RoutingMachine(props) {
   const [Alerts, setAlerts] = useState([]);
   const [Signals, setSignals] = useState([]);
 
-  console.log(Alerts);
-  console.log(Signals);
   useEffect(() => {
     fetch("http://localhost:8080/api/signals")
       .then((res) => res.json())
@@ -113,7 +111,7 @@ export default function RoutingMachine(props) {
     )[0].style.display = "none";
 
     return () => map.removeControl(routingControl);
-  }, [map, props.endCoords, Signals, Alerts]);
+  }, [map, props.endCoords, Signals, Alerts, props.idAlert]);
 
   return null;
 }

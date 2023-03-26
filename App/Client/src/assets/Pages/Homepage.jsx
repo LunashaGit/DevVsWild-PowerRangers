@@ -136,7 +136,11 @@ export default function Homepage() {
       )}
       <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between">
         <Discord onClick={handlePopup} startCoords={startCoords} />
-        <Alerts onClick={handlePopup} startCoords={startCoords} />
+        <Alerts
+          onClick={handlePopup}
+          startCoords={startCoords}
+          handleAlertId={handleAlertId}
+        />
       </div>
       {startCoords && (
         <Map
