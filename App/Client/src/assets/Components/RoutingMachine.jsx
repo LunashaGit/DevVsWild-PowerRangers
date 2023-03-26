@@ -3,6 +3,7 @@ import L from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
 import { useMap } from "react-leaflet";
+import AlertPopUp from "./AlertPopUp.jsx";
 
 L.Marker.prototype.options.icon = L.icon({
   iconUrl: "./src/assets/images/startpoint.png",
@@ -12,6 +13,7 @@ L.Marker.prototype.options.icon = L.icon({
 export default function RoutingMachine(props) {
   const [Alerts, setAlerts] = useState([]);
   const [Signals, setSignals] = useState([]);
+  const [showAlertPopUp, setShowAlertPopUp] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/signals")
@@ -113,5 +115,11 @@ export default function RoutingMachine(props) {
     return () => map.removeControl(routingControl);
   }, [map, props.endCoords, Signals, Alerts, props.idAlert]);
 
-  return null;
+  console.log(Alerts)
+
+  return (
+    <>
+      {showAlertPopUp && <AlertPopUp setShowAlertPopUp={setShowAlertPopUp} />}
+    </>
+  )
 }
