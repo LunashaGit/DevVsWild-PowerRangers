@@ -88,6 +88,10 @@ export default function Homepage() {
     setValueAlertShow(false);
   }, []);
 
+  const setIdAlertNull = useCallback(() => {
+    setIdAlert(null);
+  }, []);
+
   if (!startCoords) {
     return (
       <>
@@ -163,6 +167,7 @@ export default function Homepage() {
           endCoords={endCoords}
           handleAlert={handleAlert}
           idAlert={idAlert}
+          setIdAlertNull={setIdAlertNull}
         />
       )}
     </div>

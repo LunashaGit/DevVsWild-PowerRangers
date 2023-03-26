@@ -13,7 +13,6 @@ export default function RoutingMachine(props) {
   const [Alerts, setAlerts] = useState([]);
   const [Signals, setSignals] = useState([]);
 
-  console.log(props.idAlert);
   useEffect(() => {
     fetch("http://localhost:8080/api/signals")
       .then((res) => res.json())
@@ -26,6 +25,7 @@ export default function RoutingMachine(props) {
       .then((data) => {
         setAlerts(data);
       });
+    props.setIdAlertNull();
   }, [props.idAlert]);
 
   const map = useMap();
@@ -33,7 +33,6 @@ export default function RoutingMachine(props) {
   useEffect(() => {
     if (!map) return;
 
-    // Foreach Markers Signals and Alerts -> delete them
     map.eachLayer((layer) => {
       if (layer instanceof L.Marker) {
         map.removeLayer(layer);

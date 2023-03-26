@@ -39,6 +39,7 @@ function Map(props) {
         endCoords={props.endCoords}
         handleAlert={props.handleAlert}
         idAlert={props.idAlert}
+        setIdAlertNull={props.setIdAlertNull}
       />
     </MapContainer>
   );
