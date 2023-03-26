@@ -6,7 +6,7 @@ import Alerts from "../Components/Alerts";
 import Discord from "../Components/Discord";
 import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
-
+import Card from "../Components/Card";
 export default function Homepage() {
   const [showMobileWarning, setShowMobileWarning] = useState(false);
   const [startPoint, setStartPoint] = useState(null);
@@ -14,6 +14,9 @@ export default function Homepage() {
   const [endCoords, setEndCoords] = useState(null);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [valueForm, setValueForm] = useState([]);
+  const [valueAlert, setValueAlert] = useState({});
+  const [valueAlertShow, setValueAlertShow] = useState(false);
+  const [idAlert, setIdAlert] = useState(null);
   const toggleSearchBar = useCallback(
     () => setShowSearchBar((showSearchBar) => !showSearchBar),
     []
@@ -60,6 +63,19 @@ export default function Homepage() {
       lat: e.lat,
       lon: e.lon,
     });
+  }, []);
+
+  const handleAlert = useCallback((e) => {
+    setValueAlert(e);
+    setValueAlertShow(true);
+  }, []);
+  const handleAlertRemove = useCallback(() => {
+    setValueAlertShow(false);
+  }, []);
+
+  const handleAlertId = useCallback((e) => {
+    setIdAlert(e);
+    setValueAlertShow(false);
   }, []);
 
   if (!startCoords) {
@@ -109,6 +125,15 @@ export default function Homepage() {
           setEndCoords={setEndCoords}
         />
       )}
+      {valueAlertShow && (
+        <div className="absolute top-5 right-5 z-[5000]">
+          <Card
+            valueAlert={valueAlert}
+            handleAlertRemove={handleAlertRemove}
+            handleAlertId={handleAlertId}
+          />
+        </div>
+      )}
       <div className="absolute bottom-5 z-[5000] w-[95%] mx-[20px] flex justify-between">
         <Discord onClick={handlePopup} startCoords={startCoords} />
         <Alerts onClick={handlePopup} startCoords={startCoords} />
@@ -118,6 +143,8 @@ export default function Homepage() {
           onChange={handleCoords}
           startCoords={startCoords}
           endCoords={endCoords}
+          handleAlert={handleAlert}
+          idAlert={idAlert}
         />
       )}
     </div>
