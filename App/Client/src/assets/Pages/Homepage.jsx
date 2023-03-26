@@ -113,7 +113,9 @@ export default function Homepage() {
             Work in progress
           </h1>
           <h2 className="text-xl text-center text-white">
-            The computer version is still in the making, be patient !
+            The computer version is still in production. Nonetheless, the team
+            wish you good luck on your survival journey without your phone, may
+            the odds be in your favour !
           </h2>
         </section>
       </div>
