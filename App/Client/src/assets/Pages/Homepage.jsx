@@ -19,6 +19,7 @@ export default function Homepage() {
   const [valueAlert, setValueAlert] = useState({});
   const [valueAlertShow, setValueAlertShow] = useState(false);
   const [idAlert, setIdAlert] = useState(null);
+  const [unShowAlert, setUnShowAlert] = useState(false);
   const toggleSearchBar = useCallback(
     () => setShowSearchBar((showSearchBar) => !showSearchBar),
     []
@@ -79,6 +80,12 @@ export default function Homepage() {
   const handleAlertId = useCallback((e) => {
     setIdAlert(e);
     setValueAlertShow(false);
+    setUnShowAlert(!unShowAlert);
+  }, []);
+
+  const handleAlertIdAdd = useCallback((e) => {
+    setIdAlert(e);
+    setValueAlertShow(false);
   }, []);
 
   if (!startCoords) {
@@ -106,7 +113,9 @@ export default function Homepage() {
             Work in progress
           </h1>
           <h2 className="text-xl text-center text-white">
-            The computer version is still in the making, be patient !
+            The computer version is still in production. Nonetheless, the team
+            wish you good luck on your survival journey without your phone, may
+            the odds be in your favour !
           </h2>
         </section>
       </div>
@@ -133,7 +142,7 @@ export default function Homepage() {
           <Card
             valueAlert={valueAlert}
             handleAlertRemove={handleAlertRemove}
-            handleAlertId={handleAlertId}
+            handleAlertId={handleAlertIdAdd}
           />
         </div>
       )}
@@ -143,6 +152,8 @@ export default function Homepage() {
           onClick={handlePopup}
           startCoords={startCoords}
           handleAlertId={handleAlertId}
+          unShowAlert={unShowAlert}
+          setUnShowAlert={setUnShowAlert}
         />
       </div>
       {startCoords && (
