@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import AlertPopUp from "../Components/AlertPopUp.jsx";
 
 function Testing() {
   const [userLon, setUserLon] = useState(null);
@@ -13,9 +14,9 @@ function Testing() {
 
 
   return (
-      <div>
-        lala
-      </div>
+      <>
+        <AlertPopUp />
+      </>
   )
 }
 

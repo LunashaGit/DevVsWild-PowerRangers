@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import AlertButton from "./AlertButton";
 import AlertsList from "./AlertsList";
 function Alerts(props) {
@@ -6,6 +6,10 @@ function Alerts(props) {
   const toggleAlert = useCallback(() => {
     setShowAlert((showAlert) => !showAlert), props.onClick();
   }, []);
+  console.log(props.unShowAlert);
+  useEffect(() => {
+    setShowAlert(false);
+  }, [props.unShowAlert]);
   return (
     <>
       {!showAlert && <AlertButton onClick={toggleAlert} />}
@@ -14,6 +18,8 @@ function Alerts(props) {
           onClick={toggleAlert}
           startCoords={props.startCoords}
           handleAlertId={props.handleAlertId}
+          unShowAlert={props.unShowAlert}
+          setUnShowAlert={props.setUnShowAlert}
         />
       )}
     </>

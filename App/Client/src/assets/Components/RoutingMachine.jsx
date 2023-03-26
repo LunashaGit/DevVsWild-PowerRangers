@@ -3,6 +3,7 @@ import L from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
 import { useMap } from "react-leaflet";
+import AlertPopUp from "./AlertPopUp.jsx";
 
 L.Marker.prototype.options.icon = L.icon({
   iconUrl: "./src/assets/images/startpoint.png",
@@ -12,6 +13,8 @@ L.Marker.prototype.options.icon = L.icon({
 export default function RoutingMachine(props) {
   const [Alerts, setAlerts] = useState([]);
   const [Signals, setSignals] = useState([]);
+  const [showAlertPopUp, setShowAlertPopUp] = useState(false);
+  const [alertToSend, setAlertToSend] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:8080/api/signals")
@@ -25,6 +28,7 @@ export default function RoutingMachine(props) {
       .then((data) => {
         setAlerts(data);
       });
+    props.setIdAlertNull();
   }, [props.idAlert]);
 
   const map = useMap();
@@ -32,7 +36,6 @@ export default function RoutingMachine(props) {
   useEffect(() => {
     if (!map) return;
 
-    // Foreach Markers Signals and Alerts -> delete them
     map.eachLayer((layer) => {
       if (layer instanceof L.Marker) {
         map.removeLayer(layer);
@@ -113,5 +116,41 @@ export default function RoutingMachine(props) {
     return () => map.removeControl(routingControl);
   }, [map, props.endCoords, Signals, Alerts, props.idAlert]);
 
-  return null;
+const getNearestAlert = (alerts) => {
+  let nearest = alerts[0];
+  let nearestDistance = Math.acos(Math.sin(props.startCoords.lat)*Math.sin(alerts[0].lat)+Math.cos(props.startCoords.lat)*Math.cos(alerts[0].lat)*Math.cos(alerts[0].lon-props.startCoords.lon))*6371;
+
+  alerts.forEach((alert) => {
+    let distance = Math.acos(Math.sin(props.startCoords.lat)*Math.sin(alert.lat)+Math.cos(props.startCoords.lat)*Math.cos(alert.lat)*Math.cos(alert.lon-props.startCoords.lon))*6371
+
+    if (distance < nearestDistance) {
+      console.log('pass')
+      nearestDistance = distance;
+      nearest = alert;
+    }
+  })
+
+  nearest.distance = nearestDistance;
+
+  return nearest;
+}
+
+  useEffect(() => {
+    if (Alerts.length > 0) {
+      const nearestAlert = getNearestAlert(Alerts);
+
+      if (nearestAlert.distance < 4.5) {
+        console.log(nearestAlert)
+        setAlertToSend(nearestAlert);
+        setShowAlertPopUp(true);
+      }
+    }
+
+  }, [props.startCoords]);
+
+  return (
+    <>
+      {showAlertPopUp && <AlertPopUp setShowAlertPopUp={setShowAlertPopUp} alert={alertToSend} />}
+    </>
+  )
 }

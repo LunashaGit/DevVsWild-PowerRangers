@@ -5,59 +5,64 @@ function DiscordList(props) {
     {
       id: 1,
       title: "Animal Attack",
-      displayTitle:
-      "I'm being attack by a wild animal",
-      url: '../src/assets/images/animal-attack.png',
+      displayTitle: "I'm being attack by a wild animal",
+      url: "../src/assets/images/animal-attack.png",
     },
     {
       id: 2,
       title: "No ressources",
-      displayTitle:
-      "I don't have any ressources left",
-      url: '../src/assets/images/no-ressources.png',
+      displayTitle: "I don't have any ressources left",
+      url: "../src/assets/images/no-ressources.png",
     },
     {
       id: 3,
       title: "Lost",
-      displayTitle:
-      "I'm lost",
-      url: '../src/assets/images/lost.png',
+      displayTitle: "I'm lost",
+      url: "../src/assets/images/lost.png",
     },
     {
       id: 4,
       title: "Unsafe",
-      displayTitle:
-      'Feeling unsafe with someone',
-      url: '../src/assets/images/unsafe.png',
+      displayTitle: "Feeling unsafe with someone",
+      url: "../src/assets/images/unsafe.png",
     },
     {
       id: 5,
       title: "Injured",
-      displayTitle:
-      "I'm injured",
-      url: '../src/assets/images/injured.png',
+      displayTitle: "I'm injured",
+      url: "../src/assets/images/injured.png",
     },
     {
       id: 6,
       title: "Stucked",
-      displayTitle:
-      "I'm stuck somewhere",
-      url: '../src/assets/images/stucked.png',
+      displayTitle: "I'm stuck somewhere",
+      url: "../src/assets/images/stucked.png",
     },
   ];
 
-  // const DiscordAPI = async (e) => {
-  //   console.log(e);
-  //   const response = await axios
-  //     .post("http://127.0.0.1:8080/api/Discords", {
-  //       type: e.title,
-  //       lon: props.startCoords.lon,
-  //       lat: props.startCoords.lat,
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // };
+  const DiscordAPI = async (e) => {
+    let data = {
+      title: e.title,
+      lon: props.startCoords.lon,
+      lat: props.startCoords.lat,
+    };
+    /*const response = await axios
+      .get("http://127.0.0.1:8080/api/personalalert", {
+        params: data,
+      })
+      .then((res) => {
+        console.log(res);
+      });*/
+    fetch("http://127.0.0.1:8080/api/personalalert", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <div
       style={{
@@ -76,7 +81,7 @@ function DiscordList(props) {
             <li
               className="list-group-item w-20 h-20 text-center text-white bg-black rounded-full"
               key={Discord.id}
-              onClick={() => DiscordAPI(Discord.title)}
+              onClick={() => DiscordAPI(Discord)}
             >
               <img src={Discord.url} />
               <p className="text-[10px] pt-2">{Discord.displayTitle}</p>
