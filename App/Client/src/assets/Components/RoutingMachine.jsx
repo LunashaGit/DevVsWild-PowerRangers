@@ -13,7 +13,8 @@ L.Marker.prototype.options.icon = L.icon({
 export default function RoutingMachine(props) {
   const [Alerts, setAlerts] = useState([]);
   const [Signals, setSignals] = useState([]);
-  const [showAlertPopUp, setShowAlertPopUp] = useState(true);
+  const [showAlertPopUp, setShowAlertPopUp] = useState(false);
+  const [alertToSend, setAlertToSend] = useState({});
 
   console.log(props.idAlert);
   useEffect(() => {
@@ -116,11 +117,47 @@ export default function RoutingMachine(props) {
     return () => map.removeControl(routingControl);
   }, [map, props.endCoords, Signals, Alerts, props.idAlert]);
 
-  console.log(Alerts)
+const getNearestAlert = (alerts) => {
+  let nearest = null;
+  let nearestDistance = 0.0;
+
+  alerts.forEach((alert) => {
+    const distance = Math.acos(Math.sin(props.startCoords.lat)*Math.sin(alert.lat)+Math.cos(props.startCoords.lat)*Math.cos(alert.lat)*Math.cos(alert.lon-props.startCoords.lon))*6371
+
+    if (!nearest) {
+      nearest = alert;
+      nearestDistance = distance;
+    }
+    else {
+      if (distance < nearestDistance)
+        nearestDistance = distance
+      nearest = alert;
+    }
+  })
+
+  nearest.distance = nearestDistance;
+
+  return nearest;
+}
+
+  useEffect(() => {
+    if (Alerts.length > 1) {
+      const nearestAlert = getNearestAlert(Alerts);
+
+      console.log(nearestAlert);
+
+      /*if (distance < 4.5) {
+        console.log(Alert);
+        setAlertToSend(Alert);
+        setShowAlertPopUp(true);
+      }*/
+    }
+
+  }, [props.startCoords]);
 
   return (
     <>
-      {showAlertPopUp && <AlertPopUp setShowAlertPopUp={setShowAlertPopUp} />}
+      {showAlertPopUp && <AlertPopUp setShowAlertPopUp={setShowAlertPopUp} alert={alertToSend} />}
     </>
   )
 }

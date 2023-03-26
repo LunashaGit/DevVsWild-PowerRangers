@@ -11,8 +11,8 @@ export default function AlertPopUp(props) {
                     </svg>
                 </div>
                 <div className="flex flex-col items-center text-white">
-                    <h1 className="pt-5 pb-5 text-2xl font-bold">Zombie invasion  </h1>
-                    <p className="text-center pb-8">ALERT: Civil authorities in your area have reported that the bodies of the dead are returning to life and attacking your area. Follow the message on screen that will be updated as more information becomes available. Do not attempt to approach or apprehend these bodies, as they are considered extremely dangerous and life-threatening.</p>
+                    <h1 className="pt-5 pb-5 text-2xl font-bold">{props.alert.title}</h1>
+                    <p className="text-center pb-8">{props.alert.description}</p>
                 </div>
                 <button
                     className="bg-[#E65728] px-8 py-3 rounded-3xl font-bold text-white"
