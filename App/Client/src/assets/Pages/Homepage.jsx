@@ -7,6 +7,8 @@ import Discord from "../Components/Discord";
 import Map from "../Components/Map";
 import Loading from "../Components/Loading.jsx";
 import Card from "../Components/Card";
+import AlertPopUp from "../Components/AlertPopUp.jsx";
+
 export default function Homepage() {
   const [showMobileWarning, setShowMobileWarning] = useState(false);
   const [startPoint, setStartPoint] = useState(null);
@@ -70,6 +72,7 @@ export default function Homepage() {
     setValueAlert(e);
     setValueAlertShow(true);
   }, []);
+
   const handleAlertRemove = useCallback(() => {
     setValueAlertShow(false);
   }, []);

@@ -53,8 +53,9 @@ function Card(props) {
   };
 
   return (
-    <div className="flex items-center justify-between h-20 text-center z-[2] rounded-xl w-[90vw] bg-zinc-800 bg-opacity-60">
-      <img src={imgName} />
+    <div className="fixed inset-0 w-screen h-screen flex justify-center items-end">
+    <div className="flex my-28 items-center justify-between h-20 z-[2] rounded-full w-72 bg-blackNero/60">
+      <img className="w-20 h-20" src={imgName} />
       <div className="text-white">
         <h1 className="font-bold">{Name}</h1>
         <p className="font-thin">Still relevant ?</p>
@@ -76,6 +77,7 @@ function Card(props) {
           No
         </button>
       </div>
+    </div>
     </div>
   );
 }
