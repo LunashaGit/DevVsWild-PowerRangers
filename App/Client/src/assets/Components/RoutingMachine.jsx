@@ -13,6 +13,7 @@ export default function RoutingMachine(props) {
   const [Alerts, setAlerts] = useState([]);
   const [Signals, setSignals] = useState([]);
 
+  console.log(props.idAlert);
   useEffect(() => {
     fetch("http://localhost:8080/api/signals")
       .then((res) => res.json())

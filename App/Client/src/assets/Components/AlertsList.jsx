@@ -72,6 +72,7 @@ function AlertsList(props) {
       })
       .then((res) => {
         props.handleAlertId(res.data._id);
+        props.setUnShowAlert(!props.unShowAlert);
       });
   };
   const AlertAPI = async (e) => {
@@ -85,6 +86,7 @@ function AlertsList(props) {
       })
       .then((res) => {
         props.handleAlertId(res.data._id);
+        props.setUnShowAlert(!props.unShowAlert);
       });
   };
   return (
